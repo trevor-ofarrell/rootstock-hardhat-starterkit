@@ -2,6 +2,7 @@ import "@nomicfoundation/hardhat-toolbox";
 import { HardhatUserConfig } from "hardhat/config";
 import "hardhat-deploy";
 import "@nomiclabs/hardhat-solhint";
+import "@nomicfoundation/hardhat-ethers";
 import "solidity-coverage";
 import "dotenv/config";
 
@@ -16,10 +17,13 @@ import "./tasks/erc721/base-uri";
 import "./tasks/erc721/contract-uri";
 
 import "./tasks/erc20/mint";
+import "./tasks/erc20/deploy";
 
 import "./tasks/erc1155/mint";
 import "./tasks/erc1155/base-uri";
 import "./tasks/erc1155/contract-uri";
+
+import "./tasks/simpleDAO";
 
 // Environment variable setup
 const RSK_MAINNET_RPC_URL = process.env.RSK_MAINNET_RPC_URL;
@@ -42,6 +46,9 @@ if (!PRIVATE_KEY) {
 // Hardhat configuration
 const config: HardhatUserConfig = {
     defaultNetwork: "hardhat",
+    sourcify: {
+        enabled: false
+      },
     networks: {
         hardhat: {
             // If you want to do some forking, uncomment this
